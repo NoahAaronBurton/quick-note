@@ -3,6 +3,8 @@ const app = express();
 const fs = require('fs');
 const { writeFile } = require('fs/promises');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+
 
 //middleware for serving public folder contents
 app.use(express.static(path.join(__dirname, 'public'))); 
@@ -45,8 +47,8 @@ app.post('/api/notes', (req,res) => {
 
     const {title, text} = req.body;
 
-    //todo: save to db
     const newNote =  {
+        id: uuidv4(),
         title,
         text,
     }
@@ -78,5 +80,15 @@ app.post('/api/notes', (req,res) => {
     //send back res
     res.json({ message: 'note created successfully'})
 })
+
+// GET req for note content
+app.get('/notes/:noteId', (req,res) => {
+    const noteId = req.params.noteId;
+
+    // send back res
+    res.json({noteId, note: retrievedNote});
+})
+
+
 
 app.listen(3000);
