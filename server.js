@@ -12,6 +12,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //middle ware for parsing db
 app.use(express.json());
 
+app.get('/' , (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+})
+
 //notes page
 app.get('/notes', (req,res)=>{
     console.log('youre in notes')
