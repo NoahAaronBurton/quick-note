@@ -92,3 +92,4 @@ app.get('/notes/:noteId', (req,res) => {
 
 
 app.listen(3000);
+console.log('listing at http://localhost:3000');
