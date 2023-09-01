@@ -4,6 +4,7 @@ const fs = require('fs');
 const { writeFile } = require('fs/promises');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const PORT = process.env.PORT || 3001;
 
 
 //middleware for serving public folder contents
@@ -95,5 +96,6 @@ app.get('/notes/:noteId', (req,res) => {
 
 
 
-app.listen(3000);
-console.log('listing at http://localhost:3000');
+app.listen(PORT, () => {
+    console.log(`listing at http://localhost:/${PORT}`);
+});
